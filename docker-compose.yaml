@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  goatcounter:
+    build:
+      context: .
+      args:
+        GOATCOUNTER_DOMAIN: stats.route.hub
+        GOATCOUNTER_EMAIL: admin@route.hub
+        GOATCOUNTER_PASSWORD: best-password-ever
+    container_name: goatcounter
+    ports:
+      - "5000:5000"
+    environment:
+      - TZ=Europe/London
+      - GOATCOUNTER_DOMAIN=localhost
+      - GOATCOUNTER_EMAIL=admin@localhost
+      - GOATCOUNTER_PASSWORD=yourpassword
+    volumes:
+      - goatcounter-data:/data
+    restart: unless-stopped
+
+volumes:
+  goatcounter-data:
